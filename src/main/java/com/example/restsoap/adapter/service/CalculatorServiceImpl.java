@@ -4,9 +4,8 @@ import com.example.restsoap.adapter.exception.BadResponseException;
 import com.example.restsoap.adapter.soap.SOAPCalculator;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
-import org.tempuri.*;
+import tempuri.*;
 
 @Service
 @Qualifier("soapCalculatorService")

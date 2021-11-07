@@ -2,12 +2,11 @@ package com.example.restsoap.adapter;
 
 import com.example.restsoap.adapter.exception.BadResponseException;
 import com.example.restsoap.adapter.service.CalculatorService;
-import com.example.restsoap.adapter.service.CalculatorServiceImpl;
 import com.example.restsoap.adapter.soap.SOAPCalculator;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
-import org.tempuri.*;
+import tempuri.*;
 
 @Component
 @Qualifier("testSOAPCalculatorService")

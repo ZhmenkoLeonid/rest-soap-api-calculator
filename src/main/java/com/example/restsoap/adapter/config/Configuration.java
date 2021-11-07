@@ -22,7 +22,7 @@ public class Configuration {
     @Bean
     public Jaxb2Marshaller marshaller() {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-        marshaller.setContextPath("org.tempuri");
+        marshaller.setContextPath("tempuri");
         return marshaller;
     }
 

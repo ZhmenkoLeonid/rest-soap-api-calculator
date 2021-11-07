@@ -2,7 +2,7 @@ package com.example.restsoap.adapter.soap;
 
 import org.springframework.ws.client.core.WebServiceTemplate;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
-import org.tempuri.*;
+import tempuri.*;
 
 public class SOAPCalculator extends WebServiceTemplate {
 
