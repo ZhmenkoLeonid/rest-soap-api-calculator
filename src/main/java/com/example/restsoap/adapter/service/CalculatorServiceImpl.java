@@ -10,7 +10,6 @@ import tempuri.*;
 @Service
 @Qualifier("soapCalculatorService")
 public class CalculatorServiceImpl implements CalculatorService {
-
     private SOAPCalculator soapCalculator;
 
     public CalculatorServiceImpl(SOAPCalculator soapCalculator) {
@@ -20,7 +19,6 @@ public class CalculatorServiceImpl implements CalculatorService {
     @Override
     @Cacheable("add")
     public int add(int firstNumber, int secondNumber) {
-        System.out.println("Calling add for " + firstNumber + " and " + secondNumber);
         Add addRequest = new Add();
         addRequest.setIntA(firstNumber);
         addRequest.setIntB(secondNumber);
@@ -35,7 +33,6 @@ public class CalculatorServiceImpl implements CalculatorService {
     @Override
     @Cacheable("subtract")
     public int subtract(int firstNumber, int secondNumber) {
-        System.out.println("Calling subtract for " + firstNumber + " and " + secondNumber);
         Subtract subtractRequest = new Subtract();
         subtractRequest.setIntA(firstNumber);
         subtractRequest.setIntB(secondNumber);
@@ -50,7 +47,6 @@ public class CalculatorServiceImpl implements CalculatorService {
     @Override
     @Cacheable("divide")
     public int divide(int firstNumber, int secondNumber) {
-        System.out.println("Calling divide for " + firstNumber + " and " + secondNumber);
         Divide divideRequest = new Divide();
         divideRequest.setIntA(firstNumber);
         divideRequest.setIntB(secondNumber);
@@ -65,7 +61,6 @@ public class CalculatorServiceImpl implements CalculatorService {
     @Override
     @Cacheable("multiply")
     public int multiply(int firstNumber, int secondNumber) {
-        System.out.println("Calling multiply for " + firstNumber + " and " + secondNumber);
         Multiply multiplyRequest = new Multiply();
         multiplyRequest.setIntA(firstNumber);
         multiplyRequest.setIntB(secondNumber);

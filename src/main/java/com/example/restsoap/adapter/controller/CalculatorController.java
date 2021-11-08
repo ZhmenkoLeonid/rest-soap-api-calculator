@@ -3,7 +3,6 @@ package com.example.restsoap.adapter.controller;
 import com.example.restsoap.adapter.service.CalculatorService;
 import com.example.restsoap.adapter.model.Operation;
 import com.example.restsoap.adapter.utils.ObjectErrorMapper;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
@@ -14,9 +13,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("api/calculator")
-@Tag(name = "Calculator operations controller")
 public class CalculatorController {
-
     private CalculatorService calculatorService;
 
     private Validator calculatorValidator;

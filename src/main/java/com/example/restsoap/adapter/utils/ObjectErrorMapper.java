@@ -1,7 +1,6 @@
 package com.example.restsoap.adapter.utils;
 
 import com.example.restsoap.adapter.exception.BadRequestException;
-import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;

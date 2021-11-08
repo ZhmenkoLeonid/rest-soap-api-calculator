@@ -9,9 +9,7 @@ import org.springframework.cache.annotation.EnableCaching;
 @OpenAPIDefinition
 @EnableCaching
 public class RestSoapAdapterApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(RestSoapAdapterApplication.class, args);
     }
-
 }
