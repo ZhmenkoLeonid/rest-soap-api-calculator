@@ -16,94 +16,89 @@ import javax.validation.Valid;
 public class CalculatorController {
     private CalculatorService calculatorService;
 
-    private Validator calculatorValidator;
+    private Validator validator;
 
     private ObjectErrorMapper mapper;
 
     public CalculatorController(
-            @Qualifier("calculatorValidator") Validator calculatorValidator,
             @Qualifier("soapCalculatorService") CalculatorService calculatorService,
+            @Qualifier("calculatorValidator") Validator validator,
             ObjectErrorMapper mapper) {
-        this.calculatorValidator = calculatorValidator;
+        this.validator = validator;
         this.calculatorService = calculatorService;
         this.mapper = mapper;
     }
 
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
-        binder.setValidator(calculatorValidator);
+        binder.setValidator(validator);
     }
 
-    @PostMapping("/add")
+    @GetMapping("/add")
     @io.swagger.v3.oas.annotations.Operation(
             summary = "Adds two integer values",
             description = "Execute SOAP add request if there is no execution result in the cache yet " +
                     "or takes the result from the cache, if it is present there "
     )
-    public int addOperation(@RequestBody @Valid Operation operation,
+    public int addOperation(@Valid Operation operation,
                             BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors())
             throw mapper.toBadRequestException(bindingResult.getAllErrors());
-        }
 
         return calculatorService.add(
-                Integer.parseInt(operation.getFirstNumber()),
-                Integer.parseInt(operation.getSecondNumber())
+                operation.getFirstNumber(),
+                operation.getSecondNumber()
         );
     }
 
-    @PostMapping(value = "/divide")
+    @GetMapping(value = "/divide")
     @io.swagger.v3.oas.annotations.Operation(
             summary = "Divides firstNumber by secondNumber",
             description = "Execute SOAP divide request if there is no execution result in the cache yet " +
                     "or takes the result from the cache, if it is present there"
     )
-    public int divideOperation(@RequestBody @Valid Operation operation,
+    public int divideOperation(@Valid Operation operation,
                                BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors())
             throw mapper.toBadRequestException(bindingResult.getAllErrors());
-        }
 
         return calculatorService.divide(
-                Integer.parseInt(operation.getFirstNumber()),
-                Integer.parseInt(operation.getSecondNumber())
+                operation.getFirstNumber(),
+                operation.getSecondNumber()
         );
     }
 
-    @PostMapping(value = "/multiply")
+    @GetMapping(value = "/multiply")
     @io.swagger.v3.oas.annotations.Operation(
             summary = "Multiply two integer values",
             description = "Execute SOAP multiply request if there is no execution result in the cache yet " +
                     "or takes the result from the cache, if it is present there"
     )
-    public int multiplyOperation(@RequestBody @Valid Operation operation,
+    public int multiplyOperation(@Valid Operation operation,
                                  BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors())
             throw mapper.toBadRequestException(bindingResult.getAllErrors());
-        }
 
         return calculatorService.multiply(
-                Integer.parseInt(operation.getFirstNumber()),
-                Integer.parseInt(operation.getSecondNumber())
+                operation.getFirstNumber(),
+                operation.getSecondNumber()
         );
     }
 
-    @PostMapping(value = "/subtract")
+    @GetMapping(value = "/subtract")
     @io.swagger.v3.oas.annotations.Operation(
             summary = "Subtracts the secondNumber from the firstNumber",
             description = "Execute SOAP divide request if there is no execution result in the cache yet " +
                     "or takes the result from the cache, if it is present there"
     )
-    public int subtractOperation(@RequestBody @Valid Operation operation,
+    public int subtractOperation(@Valid Operation operation,
                                  BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors())
             throw mapper.toBadRequestException(bindingResult.getAllErrors());
-        }
 
         return calculatorService.subtract(
-                Integer.parseInt(operation.getFirstNumber()),
-                Integer.parseInt(operation.getSecondNumber())
+                operation.getFirstNumber(),
+                operation.getSecondNumber()
         );
     }
-
 }

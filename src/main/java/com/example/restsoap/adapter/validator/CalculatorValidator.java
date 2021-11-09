@@ -19,24 +19,9 @@ public class CalculatorValidator implements Validator {
         fieldValidate("secondNumber",operation.getSecondNumber(),errors);
     }
 
-    private void fieldValidate(String fieldName, String fieldValue, Errors errors){
+    private void fieldValidate(String fieldName, Integer fieldValue, Errors errors) {
         if (fieldValue == null) {
             errors.rejectValue(fieldName, "value.null", "value can't be null");
-        } else if (fieldValue.equals("")) {
-            errors.rejectValue(fieldName, "value.empty", "value can't be empty");
-        } else if (!isInteger(fieldValue)) {
-            errors.rejectValue(fieldName, "value.not.int", "value must be int");
-        }
-    }
-
-    private boolean isInteger(String str)
-    {
-        try {
-            Integer.parseInt(str);
-            return true;
-        }
-        catch(NumberFormatException e) {
-            return false;
         }
     }
 }

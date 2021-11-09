@@ -4,22 +4,22 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Operation {
-    String firstNumber;
-    String secondNumber;
+    Integer firstNumber;
+    Integer secondNumber;
 
-    public String getFirstNumber() {
+    public Integer getFirstNumber() {
         return firstNumber;
     }
 
-    public void setFirstNumber(String firstNumber) {
+    public void setFirstNumber(Integer firstNumber) {
         this.firstNumber = firstNumber;
     }
 
-    public String getSecondNumber() {
+    public Integer getSecondNumber() {
         return secondNumber;
     }
 
-    public void setSecondNumber(String secondNumber) {
+    public void setSecondNumber(Integer secondNumber) {
         this.secondNumber = secondNumber;
     }
 }
