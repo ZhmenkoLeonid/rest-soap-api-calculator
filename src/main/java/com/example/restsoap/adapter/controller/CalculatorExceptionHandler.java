@@ -13,7 +13,6 @@ public class CalculatorExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     private String defaultExceptionHandler(Exception ex) {
-        System.out.println(ex.getClass().toString());
         return ex.getMessage();
     }
 
