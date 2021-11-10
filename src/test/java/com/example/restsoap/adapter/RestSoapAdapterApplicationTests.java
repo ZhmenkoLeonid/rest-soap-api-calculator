@@ -38,7 +38,7 @@ public class RestSoapAdapterApplicationTests {
     @Test
     public void normalSubtractTest() throws Exception {
         MvcResult result = mockMvc.perform(
-                get("http://localhost/api/calculator/subtract?firstNumber={1}&secondNumber={2}", 10,2))
+                get("http://localhost/api/calculator/subtract?firstNumber={1}&secondNumber={2}", 10, 2))
                 .andExpect(status().isOk())
                 .andReturn();
         assertEquals(Integer.parseInt(result.getResponse().getContentAsString()), 8);
@@ -47,7 +47,7 @@ public class RestSoapAdapterApplicationTests {
     @Test
     public void normalDivideTest() throws Exception {
         MvcResult result = mockMvc.perform(
-                get("http://localhost/api/calculator/divide?firstNumber={1}&secondNumber={2}", 30,5))
+                get("http://localhost/api/calculator/divide?firstNumber={1}&secondNumber={2}", 30, 5))
                 .andExpect(status().isOk())
                 .andReturn();
         assertEquals(Integer.parseInt(result.getResponse().getContentAsString()), 6);
@@ -56,7 +56,7 @@ public class RestSoapAdapterApplicationTests {
     @Test
     public void normalMultiplyTest() throws Exception {
         MvcResult result = mockMvc.perform(
-                get("http://localhost/api/calculator/multiply?firstNumber={1}&secondNumber={2}", 4,4))
+                get("http://localhost/api/calculator/multiply?firstNumber={1}&secondNumber={2}", 4, 4))
                 .andExpect(status().isOk())
                 .andReturn();
         assertEquals(Integer.parseInt(result.getResponse().getContentAsString()), 16);
@@ -68,14 +68,14 @@ public class RestSoapAdapterApplicationTests {
                 get("http://localhost/api/calculator/add?secondNumber={2}", 4))
                 .andExpect(status().isBadRequest())
                 .andReturn();
-        assertEquals(result.getResponse().getContentAsString(), "BAD REQUEST: firstNumber : value can't be null");
+        assertEquals(result.getResponse().getContentAsString(), "BAD REQUEST:\nfirstNumber : value can't be null");
 
         result = mockMvc.perform(
                 get("http://localhost/api/calculator/add"))
                 .andExpect(status().isBadRequest())
                 .andReturn();
         assertEquals(result.getResponse().getContentAsString(),
-                "BAD REQUEST: firstNumber : value can't be null\nsecondNumber : value can't be null");
+                "BAD REQUEST:\nfirstNumber : value can't be null\nsecondNumber : value can't be null");
     }
 
     @Test
@@ -84,14 +84,14 @@ public class RestSoapAdapterApplicationTests {
                 get("http://localhost/api/calculator/subtract?secondNumber={2}", 4))
                 .andExpect(status().isBadRequest())
                 .andReturn();
-        assertEquals(result.getResponse().getContentAsString(), "BAD REQUEST: firstNumber : value can't be null");
+        assertEquals(result.getResponse().getContentAsString(), "BAD REQUEST:\nfirstNumber : value can't be null");
 
         result = mockMvc.perform(
                 get("http://localhost/api/calculator/subtract"))
                 .andExpect(status().isBadRequest())
                 .andReturn();
         assertEquals(result.getResponse().getContentAsString(),
-                "BAD REQUEST: firstNumber : value can't be null\nsecondNumber : value can't be null");
+                "BAD REQUEST:\nfirstNumber : value can't be null\nsecondNumber : value can't be null");
     }
 
     @Test
@@ -100,14 +100,14 @@ public class RestSoapAdapterApplicationTests {
                 get("http://localhost/api/calculator/divide?secondNumber={2}", 4))
                 .andExpect(status().isBadRequest())
                 .andReturn();
-        assertEquals(result.getResponse().getContentAsString(), "BAD REQUEST: firstNumber : value can't be null");
+        assertEquals(result.getResponse().getContentAsString(), "BAD REQUEST:\nfirstNumber : value can't be null");
 
         result = mockMvc.perform(
                 get("http://localhost/api/calculator/divide"))
                 .andExpect(status().isBadRequest())
                 .andReturn();
         assertEquals(result.getResponse().getContentAsString(),
-                "BAD REQUEST: firstNumber : value can't be null\nsecondNumber : value can't be null");
+                "BAD REQUEST:\nfirstNumber : value can't be null\nsecondNumber : value can't be null");
     }
 
     @Test
@@ -116,16 +116,57 @@ public class RestSoapAdapterApplicationTests {
                 get("http://localhost/api/calculator/multiply?secondNumber={2}", 4))
                 .andExpect(status().isBadRequest())
                 .andReturn();
-        assertEquals(result.getResponse().getContentAsString(), "BAD REQUEST: firstNumber : value can't be null");
+        assertEquals(result.getResponse().getContentAsString(), "BAD REQUEST:\nfirstNumber : value can't be null");
 
         result = mockMvc.perform(
                 get("http://localhost/api/calculator/multiply"))
                 .andExpect(status().isBadRequest())
                 .andReturn();
         assertEquals(result.getResponse().getContentAsString(),
-                "BAD REQUEST: firstNumber : value can't be null\nsecondNumber : value can't be null");
+                "BAD REQUEST:\nfirstNumber : value can't be null\nsecondNumber : value can't be null");
     }
 
+    @Test
+    public void badFormatAddTest() throws Exception {
+        mockMvc.perform(
+                get("http://localhost/api/calculator/add?firstNumber={1}&secondNumber={2}", "Hello", 4))
+                .andExpect(status().isBadRequest());
+
+        mockMvc.perform(
+                get("http://localhost/api/calculator/add?firstNumber={1}&secondNumber={2}","Hi","Hello"))
+                .andExpect(status().isBadRequest());
+    }
+    @Test
+    public void badFormatSubtractTest() throws Exception {
+        mockMvc.perform(
+                get("http://localhost/api/calculator/subtract?firstNumber={1}&secondNumber={2}", "Hello", 4))
+                .andExpect(status().isBadRequest());
+
+        mockMvc.perform(
+                get("http://localhost/api/calculator/subtract?firstNumber={1}&secondNumber={2}","Hi","Hello"))
+                .andExpect(status().isBadRequest());
+    }
+    @Test
+    public void badFormatDivideTest() throws Exception {
+        mockMvc.perform(
+                get("http://localhost/api/calculator/divide?firstNumber={1}&secondNumber={2}", "Hello", 4))
+                .andExpect(status().isBadRequest());
+
+        mockMvc.perform(
+                get("http://localhost/api/calculator/divide?firstNumber={1}&secondNumber={2}","Hi","Hello"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void badFormatMultiplyTest() throws Exception {
+        mockMvc.perform(
+                get("http://localhost/api/calculator/multiply?firstNumber={1}&secondNumber={2}", "Hello", 4))
+                .andExpect(status().isBadRequest());
+
+        mockMvc.perform(
+                get("http://localhost/api/calculator/multiply?firstNumber={1}&secondNumber={2}","Hi","Hello"))
+                .andExpect(status().isBadRequest());
+    }
 
     @Test
     public void cacheTest() {

@@ -5,8 +5,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
+
+import java.util.Collections;
 
 @org.springframework.context.annotation.Configuration
 public class Configuration {
@@ -16,7 +20,20 @@ public class Configuration {
                 .select()
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
-                .build();
+                .build()
+                .apiInfo(apiInfo());
+    }
+
+    private ApiInfo apiInfo() {
+        return new ApiInfo(
+                "Calculator REST-SOAP API",
+                "Can execute basic calculator functions via SOAP API",
+                "1.0",
+                "Terms of service",
+                new Contact("Leonid Zhmenko","","zhmenkowork@mail.ru"),
+                "",
+                "",
+                Collections.emptyList());
     }
 
     @Bean

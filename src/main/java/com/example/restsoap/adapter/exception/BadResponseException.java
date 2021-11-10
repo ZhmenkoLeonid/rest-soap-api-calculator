@@ -6,6 +6,6 @@ public class BadResponseException extends RuntimeException {
     }
 
     public BadResponseException(String msg) {
-        super("BAD RESPONSE: " + msg);
+        super("BAD RESPONSE:\n" + msg);
     }
 }

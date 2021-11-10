@@ -6,6 +6,6 @@ public class BadRequestException extends RuntimeException {
     }
 
     public BadRequestException(String msg) {
-        super("BAD REQUEST: " + msg);
+        super("BAD REQUEST:\n" + msg);
     }
 }
