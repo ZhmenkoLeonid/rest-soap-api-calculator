@@ -1,8 +1,6 @@
 package com.example.restsoap.adapter.config;
 
-import com.example.restsoap.adapter.soap.SOAPCalculator;
 import org.springframework.context.annotation.Bean;
-import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
@@ -13,7 +11,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import java.util.Collections;
 
 @org.springframework.context.annotation.Configuration
-public class Configuration {
+public class SwaggerConfiguration {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -34,20 +32,5 @@ public class Configuration {
                 "",
                 "",
                 Collections.emptyList());
-    }
-
-    @Bean
-    public Jaxb2Marshaller marshaller() {
-        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-        marshaller.setContextPath("tempuri");
-        return marshaller;
-    }
-
-    @Bean
-    public SOAPCalculator calculatorSOAPClient(Jaxb2Marshaller marshaller) {
-        SOAPCalculator soapCalculator = new SOAPCalculator();
-        soapCalculator.setMarshaller(marshaller);
-        soapCalculator.setUnmarshaller(marshaller);
-        return soapCalculator;
     }
 }
