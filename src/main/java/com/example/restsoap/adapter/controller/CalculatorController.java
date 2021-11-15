@@ -16,24 +16,14 @@ import javax.validation.Valid;
 public class CalculatorController {
     private CalculatorService calculatorService;
 
-    private Validator validator;
-
     private ObjectErrorMapper mapper;
 
     public CalculatorController(
             @Qualifier("soapCalculatorService") CalculatorService calculatorService,
-            @Qualifier("calculatorValidator") Validator validator,
             ObjectErrorMapper mapper) {
-        this.validator = validator;
         this.calculatorService = calculatorService;
         this.mapper = mapper;
     }
-
-    @InitBinder
-    protected void initBinder(WebDataBinder binder) {
-        binder.setValidator(validator);
-    }
-
     @GetMapping("/add")
     @io.swagger.v3.oas.annotations.Operation(
             summary = "Adds two integer values",
@@ -42,8 +32,9 @@ public class CalculatorController {
     )
     public int addOperation(@Valid Operation operation,
                             BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
+        if (bindingResult.hasErrors()) {
             throw mapper.toBadRequestException(bindingResult.getAllErrors());
+        }
 
         return calculatorService.add(
                 operation.getFirstNumber(),

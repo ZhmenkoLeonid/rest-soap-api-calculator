@@ -16,7 +16,7 @@ public class ObjectErrorMapper {
                         .map(error -> error instanceof FieldError ?
                                 ((FieldError) error).getField() + " : " + error.getDefaultMessage() :
                                 error.getDefaultMessage())
-                        .collect(Collectors.joining("\n"))
+                        .collect(Collectors.joining("; "))
         );
     }
 }

@@ -2,9 +2,13 @@ package com.example.restsoap.adapter.model;
 
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.NotNull;
+
 @Component
 public class Operation {
+    @NotNull(message = "must be not null")
     Integer firstNumber;
+    @NotNull(message = "must be not null")
     Integer secondNumber;
 
     public Integer getFirstNumber() {
