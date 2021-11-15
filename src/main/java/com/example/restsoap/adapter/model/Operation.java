@@ -6,9 +6,9 @@ import javax.validation.constraints.NotNull;
 
 @Component
 public class Operation {
-    @NotNull(message = "must be not null")
+    @NotNull(message = "value can't be null")
     Integer firstNumber;
-    @NotNull(message = "must be not null")
+    @NotNull(message = "value can't be null")
     Integer secondNumber;
 
     public Integer getFirstNumber() {
